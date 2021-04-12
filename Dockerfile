@@ -5,7 +5,7 @@
 # docker-compose up
 
 FROM openjdk:8-jre-alpine
-MAINTAINER nobodyiam<https://github.com/nobodyiam>
+MAINTAINER wafa<wafa.king@outlook.com>
 
 COPY apollo-all-in-one.jar /apollo-quick-start/apollo-all-in-one.jar
 COPY client /apollo-quick-start/client
@@ -21,7 +21,6 @@ RUN echo "http://mirrors.aliyun.com/alpine/v3.6/main" > /etc/apk/repositories \
     && apk add --no-cache curl bash \
     && ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && echo "Asia/Shanghai" > /etc/timezone \
-    && sed -i'.bak' '/db_url/s/localhost/apollo-db/g' /apollo-quick-start/demo.sh \
-    && sed -i "s/exit 0;/tail -f \/dev\/null/g" /apollo-quick-start/demo.sh
+    && sed -i'.bak' "s/exit 0;/tail -f \/dev\/null/g" /apollo-quick-start/demo.sh
 
 CMD ["/apollo-quick-start/demo.sh", "start"]
